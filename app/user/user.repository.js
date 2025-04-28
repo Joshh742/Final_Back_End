@@ -1,19 +1,6 @@
-//Layer repository berfungsi untuk komunikasi dengan
-// database boleh ODM boleh juga pakai raw query
+const User = require("./user.model");
 
-const Users = require("./user.model");
+const findAll = async () => await User.find();
+const findById = async (id) => await User.findById(id);
 
-const findAll = async () => {
-  const users = await Users.find();
-  return users;
-};
-
-const findById = async (id) => {
-  const users = await Users.findById(id);
-  return users;
-};
-
-module.exports = {
-  findAll,
-  findById,
-};
+module.exports = { findAll, findById };

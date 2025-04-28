@@ -1,19 +1,15 @@
 const mongoose = require("mongoose");
 
-//Buat Schema
-const userSchema = mongoose.Schema(
+const userSchema = new mongoose.Schema(
   {
     name: { type: String, required: true },
-    age: Number,
-    status: String,
+    email: { type: String, required: true, unique: true },
+    password: { type: String, required: true },
+    role: { type: String, enum: ["admin", "staff"], required: true },
   },
-  {
-    versionKey: false,
-    timestamps: true,
-  }
+  { timestamps: true }
 );
 
-//Buat Model
 const User = mongoose.model("User", userSchema);
 
 module.exports = User;

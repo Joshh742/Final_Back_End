@@ -1,33 +1,21 @@
-//Layer controller untuk handle req dan res
-// Validasi body
-
 const express = require("express");
 const router = express.Router();
-const { getUserById, getAllUsers } = require("./user.service");
+const { getAllUsers, getUserById } = require("./user.service");
+const { verifyToken, isAdmin } = require("../../middlewares/authMiddleware"); // Pastikan hanya satu deklarasi
 
-/* GET users listing. */
-router.get("/users", async (req, res, next) => {
+router.get("/", verifyToken, async (req, res) => {
   try {
     const users = await getAllUsers();
-    res.json({
-      status: "success!!!",
-      message: "list users",
-      data: users,
-    });
+    res.json({ status: "success", data: users });
   } catch (error) {
     res.status(400).send(error.message);
   }
 });
 
-router.get("/users/:id", async (req, res, next) => {
+router.get("/:id", verifyToken, async (req, res) => {
   try {
-    const id = req.params.id;
-    const users = await getUserById(id);
-    res.json({
-      status: "success",
-      message: "list users",
-      data: users,
-    });
+    const user = await getUserById(req.params.id);
+    res.json({ status: "success", data: user });
   } catch (error) {
     res.status(400).send(error.message);
   }

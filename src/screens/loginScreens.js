@@ -7,7 +7,6 @@ const LoginScreen = () => {
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
-  const [rememberMe, setRememberMe] = useState(false);
   const [validationError, setValidationError] = useState("");
   const navigate = useNavigate();
 
@@ -33,18 +32,27 @@ const LoginScreen = () => {
 
     setLoading(true);
     try {
-      const token = await new Promise((resolve) =>
-        setTimeout(() => resolve("fake-token"), 1000)
-      );
+      const response = await fetch("http://localhost:3000/api/auth/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password }),
+      });
 
-      // Simpan token sesuai pilihan remember me
-      if (rememberMe) {
-        localStorage.setItem("authToken", token);
-      } else {
-        sessionStorage.setItem("authToken", token);
+      if (!response.ok) {
+        throw new Error("Login gagal. Periksa email dan password Anda.");
       }
 
-      navigate("/stock", { state: { token } });
+      const data = await response.json();
+
+      // Pastikan token diterima dari API
+      if (!data.token) {
+        throw new Error("Token tidak ditemukan dalam respons API.");
+      }
+
+      // Navigasi ke HomeScreen dengan token
+      navigate("/stock", { state: { token: data.token } });
     } catch (error) {
       setValidationError(
         "Login gagal: " + (error.message || "Terjadi kesalahan")
@@ -99,23 +107,15 @@ const LoginScreen = () => {
         </div>
       </div>
 
-      <div className="remember-me">
-        <input
-          type="checkbox"
-          id="rememberMe"
-          checked={rememberMe}
-          onChange={(e) => setRememberMe(e.target.checked)}
-        />
-        <label htmlFor="rememberMe">Ingat Saya</label>
+      <div className="login-button-container">
+        {loading ? (
+          <div className="loading-spinner"></div>
+        ) : (
+          <button className="login-button" onClick={handleLogin}>
+            Masuk
+          </button>
+        )}
       </div>
-
-      {loading ? (
-        <div className="loading-spinner"></div>
-      ) : (
-        <button className="login-button" onClick={handleLogin}>
-          Masuk
-        </button>
-      )}
     </div>
   );
 };

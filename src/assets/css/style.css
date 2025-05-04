@@ -1,9 +1,8 @@
 /*  */
 
-
 /* LOGIN PAGE */
 body {
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   background: #f4f7fc;
   display: flex;
   justify-content: center;
@@ -84,6 +83,11 @@ button:disabled {
   cursor: not-allowed;
 }
 
+/* Login Button Container */
+.login-button-container {
+  margin-top: 20px; /* Tambahkan jarak di atas tombol login */
+}
+
 /* Loading Spinner Styling */
 .loading-container {
   position: fixed;
@@ -97,8 +101,6 @@ button:disabled {
   align-items: center;
   z-index: 9999;
 }
-
-
 
 .loading-spinner {
   width: 50px;
@@ -134,8 +136,6 @@ button:disabled {
     font-size: 14px;
     padding: 12px;
   }
-
-  
 }
 
 /* Home Screen Styles */
@@ -143,7 +143,7 @@ button:disabled {
   min-height: 100vh;
   background: linear-gradient(135deg, #f0f4f8 0%, #d9e2ec 100%);
   padding: 2rem;
-  font-family: 'Segoe UI', sans-serif;
+  font-family: "Segoe UI", sans-serif;
 }
 
 .home-title {
@@ -156,7 +156,7 @@ button:disabled {
 }
 
 .home-title::after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: 0;
   left: 50%;
@@ -174,13 +174,13 @@ button:disabled {
   background: white;
   padding: 1.5rem;
   border-radius: 12px;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   max-width: 600px;
   margin: 2rem auto;
 }
 
 .token-display {
-  font-family: 'Courier New', monospace;
+  font-family: "Courier New", monospace;
   background: #f8f9fa;
   padding: 0.5rem 1rem;
   border-radius: 8px;
@@ -219,7 +219,7 @@ button:disabled {
 .logout-button:hover {
   background: #ff5252;
   transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(255,107,107,0.3);
+  box-shadow: 0 5px 15px rgba(255, 107, 107, 0.3);
 }
 
 .stock-button {
@@ -243,16 +243,16 @@ button:disabled {
   .home-container {
     padding: 1rem;
   }
-  
+
   .home-title {
     font-size: 2rem;
   }
-  
+
   .action-buttons {
     flex-direction: column;
     align-items: center;
   }
-  
+
   .logout-button,
   .stock-button {
     width: 100%;
@@ -261,15 +261,14 @@ button:disabled {
   }
 }
 
-
 /* STOCK SCREENS STYLING*/
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600&display=swap");
 
 .stock-container {
   padding: 2rem;
   max-width: 1200px;
   margin: 0 auto;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
 }
 
 .stock-title {
@@ -339,13 +338,13 @@ button:disabled {
   .stock-container {
     padding: 1rem;
   }
-  
+
   .stock-table th,
   .stock-table td {
     padding: 0.75rem;
     font-size: 0.85rem;
   }
-  
+
   .stock-table button {
     padding: 0.4rem 0.8rem;
     font-size: 0.8rem;
@@ -356,16 +355,15 @@ button:disabled {
   .stock-title {
     font-size: 1.5rem;
   }
-  
+
   .stock-table {
     display: block;
     overflow-x: auto;
   }
 }
 
-
 /* StockDetails.css */
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600&display=swap");
 /* Stock Container */
 .stock-container {
   padding: 2rem;
@@ -481,18 +479,18 @@ button:disabled {
     padding: 1rem;
     margin: 1rem;
   }
-  
+
   .stock-table th,
   .stock-table td {
     padding: 1rem;
     font-size: 0.9rem;
   }
-  
+
   .edit-button {
     padding: 0.5rem 1rem;
     font-size: 0.85rem;
   }
-  
+
   .stock-title {
     font-size: 1.8rem;
   }
@@ -504,7 +502,7 @@ button:disabled {
     overflow-x: auto;
     white-space: nowrap;
   }
-  
+
   .stock-table th {
     font-size: 0.8rem;
   }
@@ -514,7 +512,7 @@ button:disabled {
 .stock-title {
   font-size: 2.8rem;
   color: #2c3e50;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-weight: 600;
   text-align: center;
   margin: 2rem 0;
@@ -539,7 +537,12 @@ button:disabled {
   transform: translateX(-50%);
   width: 120px;
   height: 3px;
-  background: linear-gradient(90deg, transparent 0%, #3498db 50%, transparent 100%);
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    #3498db 50%,
+    transparent 100%
+  );
   border-radius: 2px;
 }
 
@@ -555,7 +558,7 @@ button:disabled {
     font-size: 2rem;
     letter-spacing: 1px;
   }
-  
+
   .stock-title::after {
     width: 80px;
   }
@@ -580,4 +583,4 @@ button:disabled {
 }
 
 /* Tambahkan di bagian atas CSS */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");

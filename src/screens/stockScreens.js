@@ -8,6 +8,7 @@ const StockScreen = () => {
   const token = location.state?.token || localStorage.getItem("token");
 
   const [items, setItems] = useState([]);
+  const [error, setError] = useState("");
 
   useEffect(() => {
     if (!token) {
@@ -16,63 +17,29 @@ const StockScreen = () => {
       return;
     }
 
-    // Simulasi data dengan error handling
-    try {
-      setItems([
-        {
-          id: 1,
-          name: "Laptop ASUS ROG",
-          category: "Elektronik",
-          stock: 10,
-          price: 15000000,
-        },
-        {
-          id: 2,
-          name: "Kemeja Flanel",
-          category: "Fashion",
-          stock: 5,
-          price: 75000,
-        },
-        {
-          id: 3,
-          name: "Mouse Wireless",
-          category: "Aksesoris Komputer",
-          stock: 25,
-          price: 250000,
-        },
-        {
-          id: 4,
-          name: "Buku Catatan A5",
-          category: "Alat Tulis",
-          stock: 50,
-          price: 35000,
-        },
-        {
-          id: 5,
-          name: "Tas Ransel Anti Air",
-          category: "Fashion",
-          stock: 15,
-          price: 300000,
-        },
-        {
-          id: 6,
-          name: "Power Bank 20000mAh",
-          category: "Elektronik",
-          stock: 8,
-          price: 180000,
-        },
-        {
-          id: 7,
-          name: "Pensil Warna 24 Set",
-          category: "Alat Tulis",
-          stock: 12,
-          price: 120000,
-        },
-      ]);
-    } catch (error) {
-      console.error("Gagal memuat data:", error);
-      navigate("/error");
-    }
+    // Ambil data stok barang dari API
+    const fetchItems = async () => {
+      try {
+        const response = await fetch("http://localhost:3000/api/items", {
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+
+        if (!response.ok) {
+          throw new Error("Gagal mengambil data stok barang.");
+        }
+
+        const data = await response.json();
+        setItems(data.data); // Asumsikan data barang ada di `data.data`
+      } catch (err) {
+        console.error("Error:", err.message);
+        setError("Gagal memuat data stok barang.");
+      }
+    };
+
+    fetchItems();
   }, [token, navigate]);
 
   return (
@@ -81,11 +48,13 @@ const StockScreen = () => {
         <h1 className="stock-title">Daftar Stok Barang</h1>
       </div>
 
+      {error && <p className="error-message">{error}</p>}
+
       <table className="stock-table">
         <thead>
           <tr>
+            <th>ID</th>
             <th>Nama Barang</th>
-            <th>Kategori</th>
             <th>Stok</th>
             <th>Harga</th>
           </tr>
@@ -93,16 +62,16 @@ const StockScreen = () => {
         <tbody>
           {items.length > 0 ? (
             items.map((item) => (
-              <tr key={item.id}>
+              <tr key={item._id}>
+                <td>{item._id || "-"}</td>
                 <td>{item.name || "-"}</td>
-                <td>{item.category || "-"}</td>
                 <td>{item.stock?.toString() || "0"}</td>
                 <td>Rp {item.price?.toLocaleString() || "0"}</td>
               </tr>
             ))
           ) : (
             <tr>
-              <td colSpan="4">Tidak ada data tersedia</td>
+              <td colSpan="3">Tidak ada data tersedia</td>
             </tr>
           )}
         </tbody>

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import "../assets/css/style.css"; // Impor file CSS untuk styling
+import "../assets/css/style.css";
 
 const StockScreen = () => {
   const location = useLocation();
@@ -32,7 +32,7 @@ const StockScreen = () => {
         }
 
         const data = await response.json();
-        setItems(data.data); // Asumsikan data barang ada di `data.data`
+        setItems(data.data);
       } catch (err) {
         console.error("Error:", err.message);
         setError("Gagal memuat data stok barang.");
@@ -77,7 +77,6 @@ const StockScreen = () => {
         </tbody>
       </table>
 
-      {/* Tombol Kembali */}
       <button className="back-button" onClick={() => navigate("/")}>
         Kembali ke Halaman Home
       </button>

@@ -8,14 +8,14 @@ const HomeScreen = () => {
 
   useEffect(() => {
     if (token) {
-      localStorage.setItem("token", token); // Simpan token di localStorage
+      localStorage.setItem("token", token);
     } else {
-      navigate("/"); // Redirect jika token tidak ada
+      navigate("/");
     }
   }, [token, navigate]);
 
   if (!token) {
-    return null; // Jangan render apa pun jika token tidak ada
+    return null;
   }
 
   return (

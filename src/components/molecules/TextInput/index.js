@@ -1,6 +1,6 @@
-import { Text, View, TextInput as Input } from 'react-native';
-import React from 'react';
-import styles from './TextInput.styles'; // Impor file styling
+import { Text, View, TextInput as Input } from "react-native";
+import React from "react";
+import styles from "./TextInput.styles";
 
 const TextInput = ({ label, placeholder, onChangeText, ...rest }) => {
   return (

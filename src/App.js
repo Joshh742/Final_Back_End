@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import LoginScreen from "./screens/loginScreens";
 import HomeScreen from "./screens/homeScreens";
-import StockScreen from "./screens/stockScreens"; // Import StockScreen if needed
+import StockScreen from "./screens/stockScreens";
 
 const App = () => {
   return (

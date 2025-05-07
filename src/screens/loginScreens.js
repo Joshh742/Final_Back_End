@@ -46,12 +46,10 @@ const LoginScreen = () => {
 
       const data = await response.json();
 
-      // Pastikan token diterima dari API
       if (!data.token) {
         throw new Error("Token tidak ditemukan dalam respons API.");
       }
 
-      // Navigasi ke HomeScreen dengan token
       navigate("/stock", { state: { token: data.token } });
     } catch (error) {
       setValidationError(

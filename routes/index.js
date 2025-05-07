@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const userController = require("../app/user/user.controller");
 const authController = require("../app/auth/auth.controller");
-const itemController = require("../app/item/item.controller"); // Tambahkan ini
+const itemController = require("../app/item/item.controller");
 
 // Rute untuk autentikasi
 router.use("/auth", authController);
@@ -11,6 +11,6 @@ router.use("/auth", authController);
 router.use("/users", userController);
 
 // Rute untuk item
-router.use("/items", itemController); // Tambahkan ini
+router.use("/items", itemController);
 
 module.exports = router;

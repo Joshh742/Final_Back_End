@@ -17,10 +17,10 @@ const createItem = async (data) => {
 const updateItem = async (id, data) => await update(id, data);
 const deleteItem = async (id) => await remove(id);
 
-console.log("getAllItems:", getAllItems); // Harus menghasilkan [Function: getAllItems]
-console.log("createItem:", createItem); // Harus menghasilkan [Function: createItem]
-console.log("updateItem:", updateItem); // Harus menghasilkan [Function: updateItem]
-console.log("deleteItem:", deleteItem); // Harus menghasilkan [Function: deleteItem]
+console.log("getAllItems:", getAllItems);
+console.log("createItem:", createItem);
+console.log("updateItem:", updateItem);
+console.log("deleteItem:", deleteItem);
 
 module.exports = {
   getAllItems,

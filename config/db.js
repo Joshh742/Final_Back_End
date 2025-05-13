@@ -3,7 +3,6 @@ require("dotenv").config();
 
 const connectDB = async () => {
   try {
-    // Hapus opsi yang tidak diperlukan
     await mongoose.connect(process.env.MONGO_URL);
     console.log("MongoDB connected...");
   } catch (error) {

@@ -1,9 +1,9 @@
 const express = require("express");
 const router = express.Router();
-const { getAllUsers, getUserById } = require("./user.service");
-const { verifyToken, isAdmin } = require("../../middlewares/authMiddleware"); // Pastikan hanya satu deklarasi
+const { getAllUsers, getUserById, createUser } = require("./user.service");
 
-router.get("/", verifyToken, async (req, res) => {
+// Endpoint untuk mendapatkan semua pengguna
+router.get("/", async (req, res) => {
   try {
     const users = await getAllUsers();
     res.json({ status: "success", data: users });
@@ -12,12 +12,23 @@ router.get("/", verifyToken, async (req, res) => {
   }
 });
 
-router.get("/:id", verifyToken, async (req, res) => {
+// Endpoint untuk mendapatkan pengguna berdasarkan ID
+router.get("/:id", async (req, res) => {
   try {
     const user = await getUserById(req.params.id);
     res.json({ status: "success", data: user });
   } catch (error) {
     res.status(400).send(error.message);
+  }
+});
+
+// Endpoint untuk membuat pengguna baru
+router.post("/", async (req, res) => {
+  try {
+    const user = await createUser(req.body);
+    res.status(201).json({ status: "success", data: user });
+  } catch (error) {
+    res.status(400).json({ status: "error", message: error.message });
   }
 });
 
